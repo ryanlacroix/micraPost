@@ -1,0 +1,22 @@
+head
+	link(rel='stylesheet', href='style.css')
+	script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+	script(src='/blogClient.js')
+
+body
+	div#contentPanel
+		div#mainContent
+			if userObj
+				h1 Welcome #{userObj.username}
+				div#postDiv
+					div#postControls
+						button#newPost(name='newPst') Create new post
+
+				div#posts
+					if userObj.posts == undefined || userObj.posts.length == 0
+						p You have no posts :(
+					else
+						each post in userObj.posts
+							p #{post}
+
+	

@@ -1,0 +1,30 @@
+head
+	link(rel='stylesheet', href="style.css")
+
+body
+	div#contentPanel
+		div#mainContent
+			h1 Log in required
+
+			// Check for notifications
+			if msg && msg == "success"
+				h5 Account successfully created!
+			if err && err == "badInsert"
+				h5 Account creation failed, database error.
+			if err && err == "pass"
+				h5 Incorrect password.
+
+			form(action='/login' method="POST")
+				label(for='username') Username
+				br
+				input#username(name="username")
+				br
+				label(for='pass') Password
+				br
+				input#pass(name="pass" type="password")
+				br
+				div#buttons
+					button(type="Submit" value="Login") Log in
+					// need to fix this silliness
+					form#newacc(action="http://www.google.com")
+						button(type="submit" name='new' value="true") New Account

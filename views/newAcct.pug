@@ -1,0 +1,22 @@
+head
+	link(rel='stylesheet', href="style.css")
+
+body
+	div#contentPanel
+		div#mainContent
+			h1 Account
+			h7 Create a new account.
+			br
+
+			form(action='/newAcct' method="POST")
+				label(for='username') New Username
+				br
+				input#username(name="username")
+				br
+				label(for='pass') New Password
+				br
+				input#pass(name="pass" type="password")
+				br
+				div#buttons
+					button(type="Submit" value="Login") Create
+					button(type="submit" name='back' value="true") Back<<

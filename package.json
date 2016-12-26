@@ -1,0 +1,22 @@
+{
+  "name": "blogplatform",
+  "version": "1.0.0",
+  "description": "A simple blogging platform.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "ryan lacroix",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "hat": "0.0.3",
+    "mongodb": "^2.2.16",
+    "pug": "^2.0.0-beta6"
+  }
+}
