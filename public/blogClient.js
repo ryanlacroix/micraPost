@@ -20,7 +20,7 @@ function showNewPostArea() {
 		$('#submitPost').remove();
 		$('#brk').remove();
 		$('#newPost').text("Create new post");
-		// Need to add listener remover fow sendButton click
+		// Need to add listener remover for sendButton click
 		postAreaVisible = false;
 	}
 	
@@ -40,8 +40,7 @@ function sendPost() {
 function addPost(data) {
 	// needs: data.date
 	//        data.text
-
-	$("<div></div>").prepend("<p>" + data.text + "</p>");;
+	$("#posts").prepend("<p>" + data.text + "</p>");;
 	$('#tArea').remove();
 	$('#submitPost').remove();
 	$('#brk').remove();
