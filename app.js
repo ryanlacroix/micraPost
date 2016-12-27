@@ -107,7 +107,7 @@ app.post("/login", function (req, res){
 					userObj = result;
 					if (userObj == undefined) {
 						// Username doesn't exist
-						res.render('sorry', {username: req.body.username}); // Need to add ++++++++++++++
+						res.render('login', {err: 'uname', name: req.body.username}); // Need to add ++++++++++++++
 					} else {
 						// Username exists! Check the password.
 						if (req.body.pass === userObj.pass) {

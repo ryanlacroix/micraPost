@@ -7,6 +7,8 @@ body
 			h1 Log in required
 
 			// Check for notifications
+			if err && err == "uname"
+				h5 Username #{name} does not exist.
 			if msg && msg == "success"
 				h5 Account successfully created!
 			if err && err == "badInsert"
