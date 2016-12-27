@@ -8,6 +8,8 @@ body
 		div#mainContent
 			if userObj
 				h1 Welcome #{userObj.username}
+				form(action='/logout' method='GET')
+					button#logout(type='Submit' name='logout' value='true') Log out
 				div#postDiv
 					div#postControls
 						button#newPost(name='newPst') Create new post
@@ -17,6 +19,6 @@ body
 						p You have no posts :(
 					else
 						each post in userObj.posts
-							p #{post}
+							p.postBody #{post}
 
 	

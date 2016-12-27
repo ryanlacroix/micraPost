@@ -1,6 +1,19 @@
 $(document).ready(function() {
 	$('#newPost').click(showNewPostArea);
+	//$('#logout').click(requestLogout);
 });
+
+function requestLogout() {
+	$.ajax({
+		method: "GET",
+		url: '/logout',
+		success: showLogout
+	});
+}
+
+function showLogout(data) {
+	alert("Logout Successful!");
+}
 
 var postAreaVisible = false;
 function showNewPostArea() {
@@ -23,12 +36,11 @@ function showNewPostArea() {
 		// Need to add listener remover for sendButton click
 		postAreaVisible = false;
 	}
-	
 }
 
 function sendPost() {
 	var postText = $('#tArea').val();
-	$.ajax ({
+	$.ajax({
 		method: "POST",
 		dataType   : 'json',
    		contentType: 'application/json; charset=UTF-8',

@@ -1,6 +1,6 @@
 micraBlog
 =========
-A lightweight node blogging platform. Uses MongoDB on the back-end to store users and their posts.
+A lightweight node blogging platform. Uses MongoDB on the back-end to store users and track their posts.
 
 Setup
 -----

@@ -4,9 +4,12 @@ head
 body
 	div#contentPanel
 		div#mainContent
-			h1 Log in required
+			div#titleBar
+				h1 Log in required
 
 			// Check for notifications
+			if msg && msg == "loggedOut"
+				h5 Successfully logged out!
 			if err && err == "uname"
 				h5 Username #{name} does not exist.
 			if msg && msg == "success"

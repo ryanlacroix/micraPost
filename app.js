@@ -67,6 +67,10 @@ app.post("/makePost", function (req, res) {
 
 app.use("/newAcct", bodyParser.urlencoded({extended: true}));
 app.post("/newAcct", function (req, res){
+	if (req.body.back) {
+		res.render('login');
+		return;
+	}
 	MongoClient.connect("mongodb://localhost:27017/blogDB", function (err, db) {
 		if (err) {
 			console.log("FAILED TO CONNECT TO DATABASE.");
@@ -89,6 +93,17 @@ app.post("/newAcct", function (req, res){
 		}
 	});
 
+});
+
+
+app.get("/logout", function (req, res) {
+	res.cookie('auth', "", {expires: new Date(0)});
+	res.cookie('username', "", {expires: new Date(0)});
+	res.render('login', {msg: "loggedOut"});
+});
+
+app.get("/logoutSuccess", function (req, res) {
+	res.render('loggedOut');
 });
 
 app.use("/login", bodyParser.urlencoded({extended: true}));
