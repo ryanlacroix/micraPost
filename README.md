@@ -9,4 +9,4 @@ Setup
 * connect to the application from a browser on port 2406 `http://localhost:2406/`
 
 
-stores users in a Mongo database called * blogDB * under the collection * users *
+stores users in a Mongo database called *blogDB* under the collection *users*
