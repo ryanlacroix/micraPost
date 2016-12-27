@@ -35,7 +35,6 @@ app.get("/", function(req, res){
 			}
 		});
 	}
-	//res.render('index');
 });
 app.use("/makePost", bodyParser.json());
 app.post("/makePost", function (req, res) {
@@ -47,16 +46,20 @@ app.post("/makePost", function (req, res) {
 		} else {
 			// Should instead be checking authentication in cookie!
 			// req.body.username doesn't exist, need to check cookie
+			// Callback never called. Guess this needs to be wrapped?
 			db.collection("users").update({username: req.cookies.username},
 				{$push: {posts: { $each: [req.body.msg], $position: 0}}}, function (err, result) {
+					// testing
+					console.log("blah:");
+					console.log(req.body.msg);
 				if (err) {
 					console.log("Error updating user's posts.");
-					db.close();
 					res.send(JSON.stringify({text: "Something went wrong :<"}));
 				} else {
-					db.close();
+					console.log(req.body.msg);
 					res.send(JSON.stringify({text: req.body.msg}));
 				}
+				db.close();
 			});
 		}
 	});
@@ -100,7 +103,6 @@ app.post("/login", function (req, res){
 				console.log("FAILED TO CONNECT TO DATABASE.");
 			} else {
 				// Try to find the user object
-				console.log(req.body.username);
 				db.collection("users").findOne({username:req.body.username}, function (err, result){
 					userObj = result;
 					if (userObj == undefined) {
@@ -130,3 +132,4 @@ app.post("/login", function (req, res){
 app.use(express.static("./public"));
 
 app.listen(2406, function(){ console.log("Running on 2406.")});
+
