@@ -24,7 +24,7 @@ function showNewPostArea() {
 		postAreaVisible = false;
 	}
 	
-} /*dgdgsg */
+}
 
 function sendPost() {
 	var postText = $('#tArea').val();

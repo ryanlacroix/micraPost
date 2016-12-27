@@ -19,7 +19,6 @@ app.get("/", function(req, res){
 		res.render('login');
 	} else {
 		// Previous session found. Authenticate user.
-		//var user = req.cookies.username;
 		MongoClient.connect("mongodb://localhost:27017/blogDB", function (err, db) {
 			if (err) {
 				console.log("FAILED TO CONNECT TO DATABASE.");
@@ -33,20 +32,6 @@ app.get("/", function(req, res){
 					}
 				});
 				console.log("Connected to database. Checking authentication..");
-
-
-				/*
-				cursor.each(function(err, document){
-					if (document != null) {
-						if (document.auth == user.auth) {
-							// Match found, send user's homepage
-							var userInfo = {};
-							userInfo.name = document.name;
-							// Eventually need document.posts
-							res.render('home', userInfo);
-						}
-					}// This could probably be optimized with a findOne call
-				}); //                and no each loop. Woops! */
 			}
 		});
 	}
@@ -73,20 +58,6 @@ app.post("/makePost", function (req, res) {
 					res.send(JSON.stringify({text: req.body.msg}));
 				}
 			});
-			/* Need to add a response!!!
-			db.collection("users").findOne({username: req.cookies.username}, function (err, result) {
-				if (err) {
-					console.log("A post failed");
-				} else {
-					// This crashes the server when result is null
-					console.log(req.body.msg);
-					console.log(result.username);
-					console.log(req.body.msg);
-					//result.posts.push(req.body.msg);// Need to use mongo api
-
-					res.send(JSON.stringify({text: req.body.msg}));
-				}
-			}) */
 		}
 	});
 });
