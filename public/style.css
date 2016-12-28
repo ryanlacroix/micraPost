@@ -8,6 +8,14 @@ body {
 	background-color: lightblue;
 }
 
+button {
+	background-color: #b3b3b3;
+	font-family: 'Montserrat', sans-serif;
+	border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+}
+
 #tArea {
 	width: 100%;
 	height: 100px;
@@ -29,6 +37,18 @@ body {
 
 }
 
+#posts p {
+	padding-left: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	color: white;
+	font-family: 'Montserrat', sans-serif;
+}
+
+#buttonDiv {
+	padding-bottom: 20px;
+}
+
 input {
 	box-shadow: 5px 5px 0px 0px rgba(0,0,0,0.28);
 	outline: none;
@@ -41,7 +61,6 @@ input {
 #newPost {
 	float: left;
 	padding-right: 5px;
-	margin-bottom: 5px;
 }
 
 #submitPost {
@@ -51,6 +70,10 @@ input {
 }
 
 .postBody {
+	float: bottom;
+} 
+
+.innerPostBody {
 	background-color: #b3b3b3;
 	border-radius: 10px 10px 10px 10px;
 	-moz-border-radius: 10px 10px 10px 10px;
@@ -91,6 +114,7 @@ input {
 h1 {
 	margin-bottom: 1px;
 	width: 70%;
+	font-family: 'Roboto Slab', serif;
 }
 form {
 	margin-top: 20px;

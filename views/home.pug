@@ -1,6 +1,7 @@
 head
 	link(rel='stylesheet', href='style.css')
 	script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+	link(href="https://fonts.googleapis.com/css?family=Montserrat:700|Roboto+Slab:700" rel="stylesheet")
 	script(src='/blogClient.js')
 
 body
@@ -8,17 +9,19 @@ body
 		div#mainContent
 			if userObj
 				h1 Welcome #{userObj.username}
-				form(action='/logout' method='GET')
-					button#logout(type='Submit' name='logout' value='true') Log out
-				div#postDiv
-					div#postControls
-						button#newPost(name='newPst') Create new post
+				div#buttonDiv
+					form(action='/logout' method='GET')
+						button#logout(type='Submit' name='logout' value='true') Log out
+					div#postDiv
+						div#postControls
+							button#newPost(name='newPst') Create new post
 
 				div#posts
 					if userObj.posts == undefined || userObj.posts.length == 0
 						p You have no posts :(
 					else
 						each post in userObj.posts
-							p.postBody #{post}
+							div.postBody 
+								p.innerPostBody #{post}
 
 	
