@@ -12,7 +12,14 @@ app.set('view engine', 'pug');
 
 app.use(cookieParser());
 
-app.get("/", function(req, res){
+app.get("/user/:username", function (req, res) {
+	// Request for public user page
+
+	// Need to determine user object
+	//res.render('userPage', )
+});
+
+app.get("/", function (req, res){
 	// Connect to main page
 	if (req.cookies.username === undefined){
 		// No previous session found
@@ -45,7 +52,6 @@ app.post("/makePost", function (req, res) {
 			console.log("FAILED TO CONNECT TO DATABASE.")
 		} else {
 			// Should instead be checking authentication in cookie!
-			// req.body.username doesn't exist, need to check cookie
 			// Callback never called. Guess this needs to be wrapped?
 			db.collection("users").update({username: req.cookies.username},
 				{$push: {posts: { $each: [req.body.msg], $position: 0}}}, function (err, result) {
@@ -127,7 +133,7 @@ app.post("/login", function (req, res){
 						// Username exists! Check the password.
 						if (req.body.pass === userObj.pass) {
 							// Password correct. Create session cookies.
-							userObj.authToken = hat();
+/* Callback hell exists */	userObj.authToken = hat();
 							res.cookie('auth', userObj.authToken, {path: '/'});
 							res.cookie('username', userObj.username, {path: '/'});
 							res.render('home', userObj);

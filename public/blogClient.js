@@ -52,7 +52,10 @@ function sendPost() {
 function addPost(data) {
 	// needs: data.date
 	//        data.text
-	$("#posts").prepend("<p>" + data.text + "</p>");;
+	console.log(data.text);
+	var divpBody = $("<div class='postBody'></div>");
+	divpBody.append("<p class='innerPostBody'>" + data.text + "</p>");
+	$('#posts').prepend(divpBody);
 	$('#tArea').remove();
 	$('#submitPost').remove();
 	$('#brk').remove();
