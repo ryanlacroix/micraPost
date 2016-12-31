@@ -49,12 +49,13 @@ app.get("/", function (req, res){
 				console.log("FAILED TO CONNECT TO DATABASE.");
 			} else {
 				// login with cookie bug here
-				var userObj = db.collection("blogDB").findOne({username: req.cookies.username}, function (err, result) {
+				db.collection("users").findOne({username: req.cookies.username}, function (err, result) {
 					if (err) {
 						console.log("User wasn't found.");
 						res.render('login');
 					} else {
 						// also error
+						userObj = result;
 						res.render('home', userObj);
 					}
 				});
