@@ -19,11 +19,6 @@ app.use("*", function (req, res, next) {
 app.use(cookieParser());
 app.use(express.static("./public"));
 
-// No CSS error is coming from this being called in place of the static
-// route for user/kt/style.css I think
-/*app.use("/user", function (rec, res, next) {
-
-}*/
 app.get("/user/:username", function (req, res) {
 	// Request for public user page
 	console.log('hello');

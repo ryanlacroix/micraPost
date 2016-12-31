@@ -1,7 +1,6 @@
-$(document).ready(function() {
+window.onload = function() {
 	$('#newPost').click(showNewPostArea);
-	//$('#logout').click(requestLogout);
-});
+}
 
 function requestLogout() {
 	$.ajax({
