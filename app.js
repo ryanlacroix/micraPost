@@ -10,16 +10,39 @@ const ROOT = "./public";
 app.set('views', './views');
 app.set('view engine', 'pug');
 
-app.use(cookieParser());
+app.use("*", function (req, res, next) {
+	console.log("\n----new request----")
+	console.log(req.originalUrl);
+	next();
+});
 
+app.use(cookieParser());
+app.use(express.static("./public"));
+
+// No CSS error is coming from this being called in place of the static
+// route for user/kt/style.css I think
+/*app.use("/user", function (rec, res, next) {
+
+}*/
 app.get("/user/:username", function (req, res) {
 	// Request for public user page
-
-	// Need to determine user object
-	//res.render('userPage', )
+	console.log('hello');
+	MongoClient.connect("mongodb://localhost:27017/blogDB", function (err, db) {
+		if (err) {
+			console.log("FAILED TO CONNECT TO DATABASE");
+		} else {
+			db.collection("users").findOne({username: req.params.username}, function (err, result) {
+				console.log(result);
+				userObj = result;
+				db.close();
+				res.render('userPage', userObj);
+			});
+		}
+	});
 });
 
 app.get("/", function (req, res){
+	console.log("in main!");
 	// Connect to main page
 	if (req.cookies.username === undefined){
 		// No previous session found
@@ -30,11 +53,13 @@ app.get("/", function (req, res){
 			if (err) {
 				console.log("FAILED TO CONNECT TO DATABASE.");
 			} else {
+				// login with cookie bug here
 				var userObj = db.collection("blogDB").findOne({username: req.cookies.username}, function (err, result) {
 					if (err) {
 						console.log("User wasn't found.");
 						res.render('login');
 					} else {
+						// also error
 						res.render('home', userObj);
 					}
 				});
@@ -122,6 +147,7 @@ app.post("/login", function (req, res){
 		MongoClient.connect("mongodb://localhost:27017/blogDB", function (err, db){
 			if (err) {
 				console.log("FAILED TO CONNECT TO DATABASE.");
+				// Need to send a response!! +++++++++++++++++++++++
 			} else {
 				// Try to find the user object
 				db.collection("users").findOne({username:req.body.username}, function (err, result){
@@ -150,7 +176,7 @@ app.post("/login", function (req, res){
 
 });
 
-app.use(express.static("./public"));
+
 
 app.listen(2406, function(){ console.log("Running on 2406.")});
 

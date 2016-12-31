@@ -9,6 +9,7 @@ body
 		div#mainContent
 			if userObj
 				h1 Welcome #{userObj.username}
+				h6 /user/#{userObj.username}
 				div#buttonDiv
 					form(action='/logout' method='GET')
 						button#logout(type='Submit' name='logout' value='true') Log out

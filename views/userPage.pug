@@ -1,0 +1,19 @@
+head
+	link(rel='stylesheet' href='/style.css')
+	script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+	link(href="https://fonts.googleapis.com/css?family=Montserrat:700|Roboto+Slab:700" rel="stylesheet")
+
+body
+	div#contentPanel
+		div#mainContent
+			if userObj
+				h1 #{userObj.username}'s page
+				h6 /user/#{userObj.username}
+
+				div#posts
+					if userObj.posts == undefined || userObj.posts.length == 0
+						p #{userObj.username} hasn't made any posts :<
+					else
+						each post in userObj.posts
+							div.postBody
+								p.innerPostBody #{post}
