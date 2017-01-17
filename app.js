@@ -22,7 +22,8 @@ app.use(express.static("./public"));
 app.get("/user/:username", function (req, res) {
 	// Request for public user page
 	console.log('hello');
-	MongoClient.connect("mongodb://localhost:27017/blogDB", function (err, db) {
+	// Connect to mongodb://localhost:27017/blogDB when running locally
+	MongoClient.connect(process.env.MONGODB_URI, function (err, db) {
 		if (err) {
 			console.log("FAILED TO CONNECT TO DATABASE");
 		} else {
@@ -44,7 +45,7 @@ app.get("/", function (req, res){
 		res.render('login');
 	} else {
 		// Previous session found. Authenticate user.
-		MongoClient.connect("mongodb://localhost:27017/blogDB", function (err, db) {
+		MongoClient.connect(process.env.MONGODB_URI, function (err, db) {
 			if (err) {
 				console.log("FAILED TO CONNECT TO DATABASE.");
 			} else {
@@ -68,7 +69,7 @@ app.use("/makePost", bodyParser.json());
 app.post("/makePost", function (req, res) {
 	console.log("got into makePost");
 	
-	MongoClient.connect("mongodb://localhost:27017/blogDB", function (err, db) {
+	MongoClient.connect(process.env.MONGODB_URI, function (err, db) {
 		if (err) {
 			console.log("FAILED TO CONNECT TO DATABASE.")
 		} else {
@@ -95,7 +96,7 @@ app.post("/newAcct", function (req, res){
 		res.render('login');
 		return;
 	}
-	MongoClient.connect("mongodb://localhost:27017/blogDB", function (err, db) {
+	MongoClient.connect(process.env.MONGODB_URI, function (err, db) {
 		if (err) {
 			console.log("FAILED TO CONNECT TO DATABASE.");
 		} else {
@@ -137,7 +138,7 @@ app.post("/login", function (req, res){
 		res.render('newAcct');
 	} else {
 		// User has attempted a login
-		MongoClient.connect("mongodb://localhost:27017/blogDB", function (err, db){
+		MongoClient.connect(process.env.MONGODB_URI, function (err, db){
 			if (err) {
 				console.log("FAILED TO CONNECT TO DATABASE.");
 				// Need to send a response!! +++++++++++++++++++++++
@@ -172,4 +173,5 @@ app.post("/login", function (req, res){
 
 
 app.listen(process.env.PORT || 2406, function(){ console.log("Listening for requests on 2406.")});
+
 
