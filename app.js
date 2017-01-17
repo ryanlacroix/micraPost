@@ -76,9 +76,6 @@ app.post("/makePost", function (req, res) {
 			// Callback never called. Guess this needs to be wrapped?
 			db.collection("users").update({username: req.cookies.username},
 				{$push: {posts: { $each: [req.body.msg], $position: 0}}}, function (err, result) {
-					// testing
-					console.log("blah:");
-					console.log(req.body.msg);
 				if (err) {
 					console.log("Error updating user's posts.");
 					res.send(JSON.stringify({text: "Something went wrong :<"}));
@@ -150,12 +147,12 @@ app.post("/login", function (req, res){
 					userObj = result;
 					if (userObj == undefined) {
 						// Username doesn't exist
-						res.render('login', {err: 'uname', name: req.body.username}); // Need to add ++++++++++++++
+						res.render('login', {err: 'uname', name: req.body.username});
 					} else {
 						// Username exists! Check the password.
 						if (req.body.pass === userObj.pass) {
 							// Password correct. Create session cookies.
-/* Callback hell exists */	userObj.authToken = hat();
+							userObj.authToken = hat();
 							res.cookie('auth', userObj.authToken, {path: '/'});
 							res.cookie('username', userObj.username, {path: '/'});
 							res.render('home', userObj);
@@ -174,5 +171,5 @@ app.post("/login", function (req, res){
 
 
 
-app.listen(2406, function(){ console.log("Running on 2406.")});
+app.listen(process.env.PORT || 2406, function(){ console.log("Listening for requests on 2406.")});
 

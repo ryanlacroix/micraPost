@@ -111,6 +111,10 @@ input {
 	float: right;
 }
 
+#newWelcomeMsg {
+	position: absolute;
+}
+
 h1 {
 	margin-bottom: 1px;
 	width: 70%;

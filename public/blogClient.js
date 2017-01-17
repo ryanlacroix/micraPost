@@ -1,5 +1,13 @@
 window.onload = function() {
 	$('#newPost').click(showNewPostArea);
+	$('#welcomeMsg').click(changeWelcomeMsg);
+}
+
+
+var currWelcome = "Welcome"; // temporary
+function changeWelcomeMsg() {
+	$('#welcomeMsg').fadeToggle(400);
+	$('#mainContent').prepend($("<input id='newWelcomeMsg'>" + currWelcome + "</input>"));
 }
 
 function requestLogout() {
